@@ -8,6 +8,7 @@
 #define GL_GLEXT_PROTOTYPES
 #include <SDL_opengl.h>
 #include <math.h>
+#include <algorithm>
 #include <vector>
 #include "graphics.h"
 #include "util.h"
@@ -274,7 +275,7 @@ struct DrawList {
 			DrawListEntry e;
 			e.color = color;
 			e.numVertices = count;
-			memcpy(e.vertices, vertices, count * sizeof(Point));
+			std::copy_n(vertices, count, e.vertices);
 			entries.push_back(e);
 		}
 	}
